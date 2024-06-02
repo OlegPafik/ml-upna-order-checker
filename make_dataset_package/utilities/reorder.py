@@ -1,4 +1,5 @@
 import os
+import re
 import shutil
 from PIL import Image
 
@@ -34,6 +35,9 @@ def for_backups(orders, orders_folders_path, output_path):
         except Exception as e:
             print(f"Error copy/pasting images: {e}")
 
+def copy_all_marking_plates_in_orientation_NOK(input_path, output_path):
+    images_filenames = __get_images_filenames(input_path)
+    __copy_paste(images_filenames, input_path, output_path)
 
 def __split_train_test(orders, ratio_train):
     split_index = round(len(orders) * ratio_train)
@@ -72,3 +76,20 @@ def __save_resized(source_file, end_file):
         new_size = (int (img.size[0]*resize_factor), int (img.size[1]*resize_factor))
         resized_img = img.resize(new_size, Image.LANCZOS)
         resized_img.save(end_file)
+
+def __get_images_filenames(input_path):
+    images_filenames = []
+    regex = re.compile(r".*\.jpg", re.IGNORECASE)
+    with os.scandir(input_path) as files:
+            for file in files:
+                if regex.match(file.name):
+                    images_filenames.append(file.name)
+    return images_filenames
+
+def __copy_paste(image_filenames, input_path, output_path):
+    for image_filename in image_filenames:
+        image = Image.open(input_path + '/' + image_filename)
+        if 'train/device' in input_path or 'test/device' in input_path:
+            image.save(output_path + '/' + image_filename.replace('.', '_device.'))
+        elif 'train/sensor' in input_path or 'test/sensor' in input_path:
+            image.save(output_path + '/' + image_filename.replace('.', '_sensor.'))
