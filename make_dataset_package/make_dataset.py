@@ -30,7 +30,11 @@ def copy_all_marking_plates_in_orientation_NOK():
                    'datasets/device_sensor/test/sensor']
     output_path = 'datasets/orientation/NOK'
     for input_path in input_paths:
-        reorder.copy_all_marking_plates_in_orientation_NOK(input_path, output_path)
+        reorder.copy_paste_images(input_path, output_path)
+
+def split_train_test_orientation():
+    path = 'datasets/orientation'
+    reorder.split_train_test_orientation(path)
 
 def print_count():
     print('Devices count:')
