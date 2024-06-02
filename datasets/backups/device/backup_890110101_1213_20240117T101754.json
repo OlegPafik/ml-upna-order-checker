@@ -1,0 +1,28 @@
+{
+    "metadata":  {
+                     "computer":  "DESKTOP-Q8FK8C3",
+                     "port":  "COM33",
+                     "baudrate":  38400,
+                     "time":  "2024-01-17T10:17:54+01:00"
+                 },
+    "data":  {
+                 "DATO_REF_EQUIPO":  "890110101",
+                 "DATO_SERIE_EQUIPO":  "1213",
+                 "DATO_VERSION_PRINCIPAL":  "V22",
+                 "DATO_VERSION_PANTALLA":  "V22",
+                 "DATO_FECHA_FAB_EQUIPO":  "2024-01-17T00_00_00",
+                 "DATO_FECHA_CAD_EQUIPO":  "2030-01-17T00_00_00",
+                 "DATO_MEDIDAS_MAX_EQUIPO":  "15000",
+                 "DATO_MEDIDAS_CORR_EQUIPO":  "0",
+                 "DATO_MEDIDAS_ERR_EQUIPO":  "0",
+                 "DATO_MEDIDAS_REST_EQUIPO":  "15000",
+                 "DATO_MEDIDAS_ANT_TOTAL":  "0",
+                 "DATO_MEDIDAS_ANT":  [
+
+                                      ],
+                 "DATO_EVENTOS_TOTAL":  "0",
+                 "DATO_EVENTOS":  [
+
+                                  ]
+             }
+}
