@@ -15,26 +15,27 @@ def backups():
     reorder.for_backups(orders, orders_folders_path, output_path)
 
 def just_rotate():
-    path = 'datasets/orientation/NOK'
+    path = 'datasets/orientation/train/NOK'
+    rotate.just_rotate(path)
+    path = 'datasets/orientation/test/NOK'
     rotate.just_rotate(path)
 
 def create_rotated():
-    input_path = 'datasets/orientation/OK'
-    output_path = 'datasets/orientation/NOK'
+    input_path = 'datasets/orientation/train/OK'
+    output_path = 'datasets/orientation/train/NOK'
+    rotate.create_rotated(input_path, output_path)
+    input_path = 'datasets/orientation/test/OK'
+    output_path = 'datasets/orientation/test/NOK'
     rotate.create_rotated(input_path, output_path)
 
 def copy_all_marking_plates_in_orientation_NOK():
-    input_paths = ['datasets/device_sensor/train/device',
-                   'datasets/device_sensor/train/sensor',
-                   'datasets/device_sensor/test/device',
-                   'datasets/device_sensor/test/sensor']
-    output_path = 'datasets/orientation/NOK'
-    for input_path in input_paths:
-        reorder.copy_paste_images(input_path, output_path)
-
-def split_train_test_orientation():
-    path = 'datasets/orientation'
-    reorder.split_train_test_orientation(path)
+    reorder.create_orientation_train_test_folders_if_necessary('datasets/orientation')
+    for subset in ['train', 'test']:
+        input_paths = [f'datasets/device_sensor/{subset}/device',
+                       f'datasets/device_sensor/{subset}/sensor']
+        output_path = f'datasets/orientation/{subset}/NOK'
+        for input_path in input_paths:
+            reorder.copy_paste_images(input_path, output_path)
 
 def print_count():
     print('Devices count:')
