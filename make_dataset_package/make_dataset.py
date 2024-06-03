@@ -14,6 +14,11 @@ def backups():
     output_path = 'datasets/backups'
     reorder.for_backups(orders, orders_folders_path, output_path)
 
+def device_sensor_orientation_OK():
+    input_path = 'datasets/orientation'
+    output_path = 'datasets/device_sensor_orientation_OK'
+    reorder.for_device_sensor_orientation_OK(input_path, output_path)
+
 def just_rotate():
     path = 'datasets/orientation/train/NOK'
     rotate.just_rotate(path)

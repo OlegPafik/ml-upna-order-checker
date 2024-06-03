@@ -36,6 +36,21 @@ def for_backups(orders, orders_folders_path, output_path):
         except Exception as e:
             print(f"Error copy/pasting images: {e}")
 
+
+def for_device_sensor_orientation_OK(input_path, output_path):
+    __create_device_sensor_folders_if_necessary(output_path)
+    for subset in ['train', 'test']:
+        images_filenames = __get_images_filenames(f'{input_path}/{subset}/OK')
+        regex_device = re.compile(r".*\_device.jpg", re.IGNORECASE)
+        regex_sensor = re.compile(r".*\_sensor.jpg", re.IGNORECASE)
+        for image_filename in images_filenames:
+            image = Image.open(f'{input_path}/{subset}/OK/{image_filename}')
+            if regex_device.match(image_filename):
+                image.save(f'{output_path}/{subset}/device/{image_filename}')
+            elif regex_sensor.match(image_filename):
+                image.save(f'{output_path}/{subset}/sensor/{image_filename}')
+
+
 def copy_paste_images(input_path, output_path):
     images_filenames = __get_images_filenames(input_path)
     __copy_paste(images_filenames, input_path, output_path)
